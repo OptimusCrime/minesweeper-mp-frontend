@@ -1,0 +1,47 @@
+.game-row {
+  display: flex;
+  flex-direction: row;
+}
+.game-tile {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  cursor: pointer;
+  background-size: 46px 46px;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+
+  &--open {
+    background-image: url('images/tile-open.png');
+  }
+  &--open-1 {
+    color: #0200e6;
+  }
+  &--open-2 {
+    color: #269500;
+  }
+  &--open-3 {
+    color: #e10e00;
+  }
+  &--open-4 {
+    color: #1c00ff;
+  }
+  &--open-5,
+  &--open-6,
+  &--open-7,
+  &--open-8 {
+    // TODO
+    color: pink;
+  }
+  &--closed {
+    background-image: url('images/tile-close.png');
+  }
+  &--bomb-own {
+    background-image: url('images/tile-bomb-own.png');
+  }
+  &--bomb-other {
+    background-image: url('images/tile-bomb-other.png');
+  }
+}
