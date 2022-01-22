@@ -1,12 +1,23 @@
-import React from 'react';
-import {useAppSelector} from "../store/hooks";
+import React, {useEffect} from 'react';
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {State} from "../store/reducers/globalReducer";
 import {WelcomePage, LobbyPage, GamePage} from "../pages";
+import {initWebsocket} from "../websocket/websocket";
 
 export const App = () => {
   const { state } = useAppSelector(s => s.global);
+  const dispatch = useAppDispatch();
 
-  const renderMainContent = (currentState: State) => {
+  useEffect(() => {
+    if (window["WebSocket"]) {
+      initWebsocket(dispatch);
+    }
+    else {
+      // TODO error message here
+    }
+  });
+
+    const renderMainContent = (currentState: State) => {
     switch (currentState) {
       case State.GAME:
         return <GamePage />;

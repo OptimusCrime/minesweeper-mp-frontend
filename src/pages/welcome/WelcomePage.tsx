@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../../store/hooks";
-import {setPlayerInformation, setState, State} from "../../store/reducers/globalReducer";
-import {addCurrentPlayer} from "../../store/reducers/gameReducer";
+import {useAppDispatch} from "../../store/hooks";
+import {broadcastMessage} from "../../websocket/websocket";
+import {OutboundMessageType} from "../../websocket/outboundTypes";
 
 export const WelcomePage = () => {
   const dispatch = useAppDispatch();
@@ -34,16 +34,11 @@ export const WelcomePage = () => {
         onClick={e => {
           e.preventDefault();
 
-          dispatch(setPlayerInformation({
-            nickname,
-            roomCode
-          }));
-
-          dispatch(addCurrentPlayer({
+          broadcastMessage({
+            type: OutboundMessageType.JOIN_LOBBY,
             nickname: nickname,
-          }));
-
-          dispatch(setState(State.LOBBY));
+            roomCode: roomCode,
+          });
         }}
       >Go!</button>
     </div>

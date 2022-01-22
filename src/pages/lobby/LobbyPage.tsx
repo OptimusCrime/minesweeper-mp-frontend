@@ -18,7 +18,7 @@ export const LobbyPage = () => {
       <p>Players in lobby:</p>
       <ul>
         {players.map(player => (
-          <li>{player.nickname}</li>
+          <li>{player.nickname} {player.currentPlayer ? " (You)" : ''} {player.currentTurn ? " <- Current turn" : ""}</li>
         ))}
       </ul>
       <button

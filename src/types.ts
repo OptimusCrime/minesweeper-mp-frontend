@@ -1,7 +1,7 @@
 export interface Player {
   nickname: string;
-  points: number;
-  hasWon: boolean;
+  currentPlayer: boolean;
+  currentTurn: boolean;
 }
 
 export interface Tile {

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Player, Tile } from "../../types";
+import {Player, Tile} from "../../types";
 import { shuffleArray } from "../../utilities/randomizeArray";
 
 interface GlobalState {
@@ -15,18 +15,7 @@ interface GlobalState {
 }
 
 const initialState: GlobalState = {
-  players: [
-    {
-      nickname: "Player 1",
-      points: 0,
-      hasWon: false,
-    },
-    {
-      nickname: "Player 2",
-      points: 0,
-      hasWon: false,
-    },
-  ],
+  players: [],
   size: {
     width: 16,
     height: 16,
@@ -41,12 +30,8 @@ const gameReducer = createSlice({
   name: "game",
   initialState,
   reducers: {
-    addCurrentPlayer(state, action: PayloadAction<{ nickname: string }>) {
-      state.players.push({
-        nickname: action.payload.nickname || "Anon",
-        points: 0,
-        hasWon: false,
-      });
+    addCurrentPlayer(state, action: PayloadAction<{ players: Player[] }>) {
+      state.players = action.payload.players;
     },
     randomizePlayers(state) {
       state.players = shuffleArray(state.players);
